@@ -1,0 +1,800 @@
+{
+	"info": {
+		"_postman_id": "b58426d0-ac4f-433a-a0ee-db6b6950e346",
+		"name": "rbaskets.in",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "version",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.version).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.commit).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.commit_short).to.be.a(\"string\"); \r",
+							"    pm.expect(responseJson.source_code).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check json equals\", () => {\r",
+							"    pm.expect(responseJson.name).to.eql(\"request-baskets\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{mainApiUrl}}/api/version",
+					"host": [
+						"{{mainApiUrl}}"
+					],
+					"path": [
+						"api",
+						"version"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create basket",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(jsonData.token).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// Возврат к первоначальному состоянию, удаление корзины\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"const deleteRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'DELETE',\r",
+							"    header: {\r",
+							"        'Authorization': jsonData[\"token\"]\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(deleteRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Возврат к первоначальному состоянию. Корзина удалена\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"forward_url\": \"\",\r\n    \"proxy_response\": false,\r\n    \"insecure_tls\": false,\r\n    \"expand_path\": true,\r\n    \"capacity\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mainApiUrl}}/api/baskets/{{newBasket}}",
+					"host": [
+						"{{mainApiUrl}}"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{newBasket}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get basket settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(responseJson.forward_url).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.proxy_response).to.be.a(\"boolean\");\r",
+							"    pm.expect(responseJson.insecure_tls).to.be.a(\"boolean\");\r",
+							"    pm.expect(responseJson.expand_path).to.be.a(\"boolean\"); \r",
+							"    pm.expect(responseJson.capacity).to.be.a(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check json equals\", () => {\r",
+							"    pm.expect(responseJson.forward_url).to.eql(\"\");\r",
+							"    pm.expect(responseJson.proxy_response).to.eql(false);\r",
+							"    pm.expect(responseJson.insecure_tls).to.eql(false);\r",
+							"    pm.expect(responseJson.expand_path).to.eql(false);\r",
+							"    pm.expect(responseJson.capacity).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{mainApiUrl}}/api/baskets/{{basket1}}",
+					"host": [
+						"{{mainApiUrl}}"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{basket1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update basket settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});\r",
+							"\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"basket1\");\r",
+							"\r",
+							"// Проверка изменения данных на сервере\r",
+							"const getRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getRequest, (error, response) => {\r",
+							"    const responseJson = response.json();\r",
+							"\r",
+							"    pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(responseJson.forward_url).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.proxy_response).to.be.a(\"boolean\");\r",
+							"    pm.expect(responseJson.insecure_tls).to.be.a(\"boolean\");\r",
+							"    pm.expect(responseJson.expand_path).to.be.a(\"boolean\"); \r",
+							"    pm.expect(responseJson.capacity).to.be.a(\"number\");\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Check json equals\", () => {\r",
+							"    pm.expect(responseJson.forward_url).to.eql(\"\");\r",
+							"    pm.expect(responseJson.proxy_response).to.eql(false);\r",
+							"    pm.expect(responseJson.insecure_tls).to.eql(false);\r",
+							"    pm.expect(responseJson.expand_path).to.eql(false);\r",
+							"    pm.expect(responseJson.capacity).to.eql(30);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// Возврат данных к первоначальному состоянию\r",
+							"const putRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'PUT',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ \r",
+							"            forward_url: \"\",\r",
+							"            proxy_response: false,\r",
+							"            insecure_tls: false,\r",
+							"            expand_path: false,\r",
+							"            capacity: 200\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(putRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Данные возвращены к первоначальному состоянию\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"forward_url\": \"\",\r\n    \"proxy_response\": false,\r\n    \"insecure_tls\": false,\r\n    \"expand_path\": false,\r\n    \"capacity\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mainApiUrl}}/api/baskets/{{basket1}}",
+					"host": [
+						"{{mainApiUrl}}"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{basket1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete basket",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"// Временно сохраняем текущий ключ авторизации в переменную\r",
+							"var currentAuth = pm.environment.get(\"Authorization\")\r",
+							"pm.environment.set(\"secondAuth\", currentAuth)\r",
+							"\r",
+							"// Создаем новую корзину для удаления\r",
+							"const postRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': currentAuth\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ \r",
+							"            forward_url: \"\",\r",
+							"            proxy_response: false,\r",
+							"            insecure_tls: false,\r",
+							"            expand_path: false,\r",
+							"            capacity: 1\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(postRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Новая корзина для тестирования удаления создана\");\r",
+							"    // Временно установили полученный токен в качестве основного\r",
+							"    pm.environment.set(\"Authorization\", response.json()[\"token\"]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});\r",
+							"\r",
+							"// Проверка удаления корзины\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"const getRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getRequest, (error, response) => {\r",
+							"    pm.test(\"Check status code\", () => {\r",
+							"        pm.expect(response.code).to.eql(404);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// Устанавка основного токен обратно\r",
+							"pm.environment.set(\"Authorization\", pm.environment.get(\"secondAuth\"));\r",
+							"pm.environment.set(\"secondAuth\", \"\")\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{mainApiUrl}}/api/baskets/{{newBasket}}",
+					"host": [
+						"{{mainApiUrl}}"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{newBasket}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get response settings (GET)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(responseJson.status).to.be.a(\"number\");\r",
+							"    pm.expect(responseJson.headers).to.be.a(\"object\");\r",
+							"    pm.expect(responseJson.headers.Location).to.be.a(\"array\");\r",
+							"    pm.expect(responseJson.body).to.be.a(\"string\"); \r",
+							"    pm.expect(responseJson.is_template).to.be.a(\"boolean\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check json equals\", () => {\r",
+							"    pm.expect(responseJson.status).to.eql(200);\r",
+							"    pm.expect(responseJson.headers.Location).to.eql(['/bears']);\r",
+							"    pm.expect(responseJson.body).to.eql(\"{\\nbear: its_bear\\n}\");\r",
+							"    pm.expect(responseJson.is_template).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://rbaskets.in/api/baskets/{{basket1}}/responses/GET",
+					"protocol": "https",
+					"host": [
+						"rbaskets",
+						"in"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{basket1}}",
+						"responses",
+						"GET"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update response settings (GET)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});\r",
+							"\r",
+							"// Запрос измененного состояния\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"basket1\") + \"/responses/GET\";\r",
+							"\r",
+							"const getRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getRequest, (error, response) => {\r",
+							"    const responseJson = response.json();\r",
+							"\r",
+							"    pm.test(\"Check json types\", () => {\r",
+							"        pm.expect(responseJson.status).to.be.a(\"number\");\r",
+							"        pm.expect(responseJson.headers).to.be.a(\"object\");\r",
+							"        pm.expect(responseJson.headers.Location).to.be.a(\"array\");\r",
+							"        pm.expect(responseJson.body).to.be.a(\"string\"); \r",
+							"        pm.expect(responseJson.is_template).to.be.a(\"boolean\");\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Check json equals\", () => {\r",
+							"        pm.expect(responseJson.status).to.eql(200);\r",
+							"        pm.expect(responseJson.headers.Location).to.eql(['/grillz']);\r",
+							"        pm.expect(responseJson.body).to.eql(\"{\\nbear: its_grillz\\n}\");\r",
+							"        pm.expect(responseJson.is_template).to.eql(false);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// Возврат первоначального значения\r",
+							"const putRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'PUT',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ \r",
+							"            status: 200,\r",
+							"            headers: {\r",
+							"                \"Location\": [\r",
+							"                    \"/bears\"\r",
+							"                ]\r",
+							"            },\r",
+							"            body: \"{\\nbear: its_bear\\n}\",\r",
+							"            is_template: false\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(putRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Установка первоначального значения успешна\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": 200,\r\n    \"headers\": {\r\n        \"Location\": [\r\n            \"/grillz\"\r\n        ]\r\n    },\r\n    \"body\": \"{\\nbear: its_grillz\\n}\",\r\n    \"is_template\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rbaskets.in/api/baskets/{{basket1}}/responses/GET",
+					"protocol": "https",
+					"host": [
+						"rbaskets",
+						"in"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{basket1}}",
+						"responses",
+						"GET"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get collected requests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check json types\", () => {\r",
+							"    pm.expect(responseJson.requests).to.be.a(\"array\");\r",
+							"    pm.expect(responseJson.count).to.be.a(\"number\");\r",
+							"    pm.expect(responseJson.total_count).to.be.a(\"number\");\r",
+							"    pm.expect(responseJson.has_more).to.be.a(\"boolean\"); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check json equals\", () => {\r",
+							"    pm.expect(responseJson.count).to.eql(2);\r",
+							"    pm.expect(responseJson.total_count).to.eql(13);\r",
+							"    pm.expect(responseJson.has_more).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rbaskets.in/api/baskets/{{basket1}}/requests",
+					"protocol": "https",
+					"host": [
+						"rbaskets",
+						"in"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{basket1}}",
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all requests",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Создать тестовую корзину\r",
+							"\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"// Подменить ключ авторизации\r",
+							"var currentAuth = pm.environment.get(\"Authorization\")\r",
+							"pm.environment.set(\"secondAuth\", currentAuth)\r",
+							"\r",
+							"const postRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': currentAuth\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ \r",
+							"            forward_url: \"\",\r",
+							"            proxy_response: false,\r",
+							"            insecure_tls: false,\r",
+							"            expand_path: false,\r",
+							"            capacity: 1\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(postRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Создана тестовая корзина\");\r",
+							"    pm.environment.set(\"Authorization\", response.json()[\"token\"]);\r",
+							"});\r",
+							"\r",
+							"// Создать один запрос к тестовой корзине\r",
+							"var createReqUrl = pm.environment.get(\"mainApiUrl\")  + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"const getRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    },\r",
+							"    body: {\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(getRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Создан запрос в тестовую корзину\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Check status code\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});\r",
+							"\r",
+							"// Проверка что в корзине нет реквестов\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\") + \"/requests\";\r",
+							"\r",
+							"const getRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getRequest, (error, response) => {\r",
+							"    var responseJson = response.json();\r",
+							"    pm.test(\"Check json types\", () => {\r",
+							"        pm.expect(responseJson.requests).to.be.a(\"array\");\r",
+							"        pm.expect(responseJson.count).to.be.a(\"number\");\r",
+							"        pm.expect(responseJson.total_count).to.be.a(\"number\");\r",
+							"        pm.expect(responseJson.has_more).to.be.a(\"boolean\"); \r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Check json equals\", () => {\r",
+							"        pm.expect(responseJson.count).to.eql(0);\r",
+							"        pm.expect(responseJson.total_count).to.eql(0);\r",
+							"        pm.expect(responseJson.has_more).to.eql(false);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// Удалить тестовую корзину\r",
+							"var currUrl = pm.environment.get(\"mainApiUrl\") + \"/api/baskets/\" + pm.environment.get(\"newBasket\");\r",
+							"\r",
+							"const deleteRequest = {\r",
+							"    url: currUrl,\r",
+							"    method: 'DELETE',\r",
+							"    header: {\r",
+							"        'Authorization': pm.environment.get(\"Authorization\")\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(deleteRequest, (error, response) => {\r",
+							"    console.log(error ? error : \"Тестовая корзина удалена\");\r",
+							"});\r",
+							"\r",
+							"// Восстановить основной токен\r",
+							"pm.environment.set(\"Authorization\", pm.environment.get(\"secondAuth\"));\r",
+							"pm.environment.set(\"secondAuth\", \"\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rbaskets.in/api/baskets/{{newBasket}}/requests",
+					"protocol": "https",
+					"host": [
+						"rbaskets",
+						"in"
+					],
+					"path": [
+						"api",
+						"baskets",
+						"{{newBasket}}",
+						"requests"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

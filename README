@@ -1,0 +1,6 @@
+
+# Примеры некоторых тестов
+
+## директория /postman
+- содержит пробные тесты api сервиса [rbaskets.in](https://rbaskets.in)
+- запустить тесты: newman run rbaskets.in.postman_collection.json -e rbaskets.in-env.postman_environment.json

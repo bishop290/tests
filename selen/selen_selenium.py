@@ -19,6 +19,8 @@ def get_new_test(name:str) -> object:
 def start_browser(test:object, browser:str):
     if (browser == "chrome"):
         test.browser = test.webdriver.Chrome()
+    elif (browser == "firefox"):
+        test.browser = test.webdriver.Firefox()
     test.browser.set_page_load_timeout(30)
     log_save(test, "Start " + browser, "info")
 

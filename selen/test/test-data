@@ -1,6 +1,6 @@
 ### Решетка это комментарий. Для читаемости: пробелы не важны, можно оставлять пустые строки.
 ### ;action; xpath pattern; expect; - одна запись одна строка
-### actions: click, click_ret (click_with_return), input:что вводим
+### actions: click, ret_click (click_with_return), input:что вводим
 ### expects: url:.., можно ничего не вводить, 
 
 
@@ -22,7 +22,7 @@
 
 ;input:Я ввел строку; //input[@name="q"];;
 
-;click_ret; //input[@value="Go"]         ; url:https://www.selenium.dev/selenium/docs/api/py/search.html?q=%D0%AF+%D0%B2%D0%B2%D0%B5%D0%BB+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83&check_keywords=yes&area=default;
+;ret_click; //input[@value="Go"]         ; url:https://www.selenium.dev/selenium/docs/api/py/search.html?q=%D0%AF+%D0%B2%D0%B2%D0%B5%D0%BB+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83&check_keywords=yes&area=default;
 
-;click_ret; //a[text()="Show Source"]    ; url:https://www.selenium.dev/selenium/docs/api/py/_sources/api.rst.txt;
+;ret_click; //a[text()="Show Source"]    ; url:https://www.selenium.dev/selenium/docs/api/py/_sources/api.rst.txt;
 

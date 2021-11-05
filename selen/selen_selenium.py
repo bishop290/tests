@@ -45,12 +45,31 @@ def find_element_xpath(test:object, pattern:str) -> object:
     return element
 
 
+def get_attributes(test:object, pattern:str) -> dict:
+    attr = {}
+
+    element = find_element_xpath(test, pattern)
+    if (element != None):
+        js_code = """
+        let attr = arguments[0].attributes;
+        let items = {}; 
+        for (let i = 0; i < attr.length; i++) {
+            items[attr[i].name] = attr[i].value;
+        }
+        return items;
+        """
+    
+        attr = test.browser.execute_script(js_code, element)
+
+    return attr
+
+
 def click(test:object, pattern:str):
     element = find_element_xpath(test, pattern)
     if (element != None):
         element.click()
         log_save(test, "Element click, (pattern: {0})".format(pattern), "info")
-        
+
 
 def input_keys(test:object, pattern:str, keys:str):
     element = find_element_xpath(test, pattern)
@@ -59,7 +78,11 @@ def input_keys(test:object, pattern:str, keys:str):
         log_save(test, "Send keys, (pattern: {0}, keys: {1})".format(pattern, keys), "info")
 
 
-def click_with_return(test:object, pattern:str):
-    click(test, pattern)
-    test.browser.back()
+def get_text_in_field(test:object, pattern:str) -> str:
+    text = ""
+    element = find_element_xpath(test, pattern)
 
+    if (element != None):
+       text = element.get_attribute('value')
+        
+    return text

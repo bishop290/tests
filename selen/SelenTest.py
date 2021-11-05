@@ -42,9 +42,9 @@ class SelenTest:
 
     def print_info(self) -> str:
         info = """
-Name         : {0}
-Driver       : {1}
-Logfile path : {2}"""
+        Name         : {0}
+        Driver       : {1}
+        Logfile path : {2}"""
         return info.format(
             self.name,
             str(self.webdriver),

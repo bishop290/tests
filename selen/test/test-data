@@ -1,28 +1,68 @@
-### Решетка это комментарий. Для читаемости: пробелы не важны, можно оставлять пустые строки.
-### ;action; xpath pattern; expect; - одна запись одна строка
-### actions: click, ret_click (click_with_return), input:что вводим
-### expects: url:.., можно ничего не вводить, 
+############################################################################################
+# Решетка это комментарий. Для читаемости: пробелы не важны, можно оставлять пустые строки.
+# Общий вид шага:
+#                    ; действие ; паттерн ; данные ;
+#                                                     - одна запись одна строка
+# Действие может быть следующих видов:
+#                    click     -- нажть по xpath паттерну на элемент.
+#                    return    -- вернуться на предыдущую страницу.
+#                    input     -- ввести буквы в поле по xpath паттерну.
+#                    url       -- прверить текущеий url по паттерну.
+#                    expect    -- найдет по xpath поле и проверит его соответствие с указанным текстом.
+#
+############################################################################################
 
+# Тестирование страницы:
+# https://www.selenium.dev/selenium/docs/api/py/api.html
 
-### Тестирование страницы:
-### https://www.selenium.dev/selenium/docs/api/py/api.html
+;click; //a[text()="Common"]             ;;
+;url  ; https://www.selenium.dev/selenium/docs/api/py/api.html#common;;
 
-;click; //a[text()="Common"]             ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#common;
-;click; //a[text()="Webdriver.common"]   ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-common;
-;click; //a[text()="Webdriver.support"]  ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-support;
-;click; //a[text()="Webdriver.chrome"]   ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chrome;
-;click; //a[text()="Webdriver.chromium"] ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chromium;
-;click; //a[text()="Webdriver.edge"]     ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-edge;
-;click; //a[text()="Webdriver.firefox"]  ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-firefox;
-;click; //a[text()="Webdriver.ie"]       ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-ie;
-;click; //a[text()="Webdriver.opera"]    ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-opera;
-;click; //a[text()="Webdriver.remote"]   ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-remote;
-;click; //a[text()="Webdriver.safari"]   ; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-safari;
-;click; //a[text()="Webdriver.webkitgtk"]; url:https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-webkitgtk;
+;click; //a[text()="Webdriver.common"]   ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-common;;
 
-;input:Я ввел строку; //input[@name="q"];;
+;click; //a[text()="Webdriver.support"]  ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-support;;
 
-;ret_click; //input[@value="Go"]         ; url:https://www.selenium.dev/selenium/docs/api/py/search.html?q=%D0%AF+%D0%B2%D0%B2%D0%B5%D0%BB+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83&check_keywords=yes&area=default;
+;click; //a[text()="Webdriver.chrome"]   ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chrome;;
 
-;ret_click; //a[text()="Show Source"]    ; url:https://www.selenium.dev/selenium/docs/api/py/_sources/api.rst.txt;
+;click; //a[text()="Webdriver.chromium"] ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chromium;;
+
+;click; //a[text()="Webdriver.edge"]     ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-edge;;
+
+;click; //a[text()="Webdriver.firefox"]  ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-firefox;;
+
+;click; //a[text()="Webdriver.ie"]       ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-ie;;
+
+;click; //a[text()="Webdriver.opera"]    ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-opera;;
+
+;click; //a[text()="Webdriver.remote"]   ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-remote;;
+
+;click; //a[text()="Webdriver.safari"]   ;;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-safari;;
+
+;click; //a[text()="Webdriver.webkitgtk"];;
+; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-webkitgtk;;
+
+;input; //input[@name="q"] ; Я ввел строку;
+;expect; //input[@name="q"]; Я ввел строку;
+
+;click; //input[@value="Go"]         ;;
+;url;https://www.selenium.dev/selenium/docs/api/py/search.html?q=%D0%AF+%D0%B2%D0%B2%D0%B5%D0%BB+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83&check_keywords=yes&area=default;;
+;return;;;
+
+;click; //a[text()="Show Source"]    ;;
+;url  ; https://www.selenium.dev/selenium/docs/api/py/_sources/api.rst.txt;;
+;return;;;
+
+;click; //span[text()="selenium.common.exceptions"];;
+;url  ; https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html#module-selenium.common.exceptions ;;
+;return;;;
 

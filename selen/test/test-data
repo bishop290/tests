@@ -18,6 +18,10 @@
 ;click; //a[text()="Common"]             ;;
 ;url  ; https://www.selenium.dev/selenium/docs/api/py/api.html#common;;
 
+;click; это не верный xpath;;
+
+;;//a[text()="это не существующий xpath"];;
+
 ;click; //a[text()="Webdriver.common"]   ;;
 ; url ; https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-common;;
 

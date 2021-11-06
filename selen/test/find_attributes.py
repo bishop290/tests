@@ -10,7 +10,11 @@ from SelenTest import SelenTest
 
 
 def main(params:list):
-
+"""
+При составлении комманды нужно экранировать кавычки.
+Пример:
+python find_attributes.py https://www.selenium.dev/selenium/docs/api/py/api.html //a[text()=\"Webdriver.safari\"]
+"""
      if (len(params) != 3):
           print("Не верное количество параметров")
           return
@@ -30,7 +34,7 @@ def main(params:list):
      """
 
      attr = get_attributes(test, xpath)
-     print(txt.format(url, xpath, str(attr)))
+     print(txt.format(url, xpath, attr))
      return
      
 

@@ -1,0 +1,71 @@
+INFO:root:2021-11-07 00:31:41.288366:: 
+        Name         : First
+        Driver       : <module 'selenium.webdriver' from 'Z:\\Python38\\lib\\site-packages\\selenium\\webdriver\\__init__.py'>
+        Logfile path : Z:\selen\log_First_2021-11-07_00-31-41-286452.txt
+INFO:root:2021-11-07 00:31:46.718640:: Start chrome
+INFO:root:2021-11-07 00:31:51.006695:: Find element, pattern: //a[text()="Common"]
+INFO:root:2021-11-07 00:31:51.243575:: Element click, (pattern: //a[text()="Common"])
+INFO:root:2021-11-07 00:31:51.263578:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#common)
+ERROR:root:2021-11-07 00:31:51.358330:: Invalid pattern: это не верный xpath
+INFO:root:2021-11-07 00:31:51.403600:: Find element, pattern: //a[text()="Webdriver.common"]
+INFO:root:2021-11-07 00:31:51.562573:: Element click, (pattern: //a[text()="Webdriver.common"])
+INFO:root:2021-11-07 00:31:51.582576:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-common)
+INFO:root:2021-11-07 00:31:51.624688:: Find element, pattern: //a[text()="Webdriver.support"]
+INFO:root:2021-11-07 00:31:51.825773:: Element click, (pattern: //a[text()="Webdriver.support"])
+INFO:root:2021-11-07 00:31:51.847882:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-support)
+INFO:root:2021-11-07 00:31:51.893152:: Find element, pattern: //a[text()="Webdriver.chrome"]
+INFO:root:2021-11-07 00:31:52.081604:: Element click, (pattern: //a[text()="Webdriver.chrome"])
+INFO:root:2021-11-07 00:31:52.106871:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chrome)
+INFO:root:2021-11-07 00:31:52.148983:: Find element, pattern: //a[text()="Webdriver.chromium"]
+INFO:root:2021-11-07 00:31:52.349015:: Element click, (pattern: //a[text()="Webdriver.chromium"])
+INFO:root:2021-11-07 00:31:52.377440:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-chromium)
+INFO:root:2021-11-07 00:31:52.423764:: Find element, pattern: //a[text()="Webdriver.edge"]
+INFO:root:2021-11-07 00:31:52.599581:: Element click, (pattern: //a[text()="Webdriver.edge"])
+INFO:root:2021-11-07 00:31:52.626954:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-edge)
+INFO:root:2021-11-07 00:31:52.675383:: Find element, pattern: //a[text()="Webdriver.firefox"]
+INFO:root:2021-11-07 00:31:52.837514:: Element click, (pattern: //a[text()="Webdriver.firefox"])
+INFO:root:2021-11-07 00:31:52.864887:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-firefox)
+INFO:root:2021-11-07 00:31:52.914368:: Find element, pattern: //a[text()="Webdriver.ie"]
+INFO:root:2021-11-07 00:31:53.068077:: Element click, (pattern: //a[text()="Webdriver.ie"])
+INFO:root:2021-11-07 00:31:53.097556:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-ie)
+INFO:root:2021-11-07 00:31:53.143879:: Find element, pattern: //a[text()="Webdriver.opera"]
+INFO:root:2021-11-07 00:31:53.307063:: Element click, (pattern: //a[text()="Webdriver.opera"])
+INFO:root:2021-11-07 00:31:53.330224:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-opera)
+INFO:root:2021-11-07 00:31:53.391287:: Find element, pattern: //a[text()="Webdriver.remote"]
+INFO:root:2021-11-07 00:31:53.539732:: Element click, (pattern: //a[text()="Webdriver.remote"])
+INFO:root:2021-11-07 00:31:53.568157:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-remote)
+INFO:root:2021-11-07 00:31:53.615533:: Find element, pattern: //a[text()="Webdriver.safari"]
+INFO:root:2021-11-07 00:31:53.777664:: Element click, (pattern: //a[text()="Webdriver.safari"])
+INFO:root:2021-11-07 00:31:53.808196:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-safari)
+INFO:root:2021-11-07 00:31:53.854519:: Find element, pattern: //a[text()="Webdriver.webkitgtk"]
+INFO:root:2021-11-07 00:31:54.026125:: Element click, (pattern: //a[text()="Webdriver.webkitgtk"])
+INFO:root:2021-11-07 00:31:54.053498:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/api.html#webdriver-webkitgtk)
+INFO:root:2021-11-07 00:31:54.099821:: Find element, pattern: //input[@name="q"]
+INFO:root:2021-11-07 00:31:54.395658:: Send keys, (pattern: //input[@name="q"], keys: Я ввел строку)
+INFO:root:2021-11-07 00:31:54.424084:: Find element, pattern: //input[@name="q"]
+INFO:root:2021-11-07 00:31:54.477776:: Field text valid 
+    (Я ввел строку)
+INFO:root:2021-11-07 00:31:54.521994:: Find element, pattern: //input[@value="Go"]
+INFO:root:2021-11-07 00:31:55.343040:: Element click, (pattern: //input[@value="Go"])
+INFO:root:2021-11-07 00:31:55.377220:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/search.html?q=%D0%AF+%D0%B2%D0%B2%D0%B5%D0%BB+%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83&check_keywords=yes&area=default)
+INFO:root:2021-11-07 00:31:55.759056:: Find element, pattern: //a[text()="Show Source"]
+INFO:root:2021-11-07 00:31:56.183860:: Element click, (pattern: //a[text()="Show Source"])
+INFO:root:2021-11-07 00:31:56.226829:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/_sources/api.rst.txt)
+INFO:root:2021-11-07 00:31:56.622337:: Find element, pattern: //span[text()="selenium.common.exceptions"]
+INFO:root:2021-11-07 00:31:57.329368:: Element click, (pattern: //span[text()="selenium.common.exceptions"])
+INFO:root:2021-11-07 00:31:57.359642:: URL valid 
+    (https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html#module-selenium.common.exceptions)

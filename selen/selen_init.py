@@ -38,8 +38,18 @@ def start(test_info:object):
 def init(tests:tuple):
 
     procs = []
+    test_cache = {}
+
     for test_info in tests:
-        test_info.tests = test_parsing(test_info.path)
+        testpath = test_info.path
+
+        if (testpath in test_cache):
+            test_info.tests = test_cache[testpath]
+        else:
+            tests = test_parsing(testpath)
+            test_cache[testpath] = tests
+            test_info.tests = tests
+        
         proc = Process(target=start, args=(test_info,))
         procs.append(proc)
 

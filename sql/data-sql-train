@@ -1,0 +1,551 @@
+Всего вопросов 160.
+тэги: (не решил)
+
+Таблицы:
+
+"Компьютерная фирма"
+Product(maker, model, type)                         m
+PC     (code, model, speed, ram, hd, cd, price)     c
+Laptop (code, model, speed, ram, hd, price, screen) c
+Printer(code, model, color, type, price)            c
+
+Product
+maker	model	type
+A	1232	PC
+A	1233	PC
+A	1276	Printer
+A	1298	Laptop
+A	1401	Printer
+A	1408	Printer
+A	1752	Laptop
+B	1121	PC
+B	1750	Laptop
+C	1321	Laptop
+D	1288	Printer
+D	1433	Printer
+E	1260	PC
+E	1434	Printer
+E	2112	PC
+E	2113	PC
+
+PC
+code	model	speed	ram	hd	cd	price
+1	1232	500	64	5.0	12x	600.0000
+10	1260	500	32	10.0	12x	350.0000
+11	1233	900	128	40.0	40x	980.0000
+12	1233	800	128	20.0	50x	970.0000
+2	1121	750	128	14.0	40x	850.0000
+3	1233	500	64	5.0	12x	600.0000
+4	1121	600	128	14.0	40x	850.0000
+5	1121	600	128	8.0	40x	850.0000
+6	1233	750	128	20.0	50x	950.0000
+7	1232	500	32	10.0	12x	400.0000
+8	1232	450	64	8.0	24x	350.0000
+9	1232	450	32	10.0	24x	350.0000
+
+Laptop
+code	model	speed	ram	hd	price	screen
+1	1298	350	32	4.0	700.0000	11
+2	1321	500	64	8.0	970.0000	12
+3	1750	750	128	12.0	1200.0000	14
+4	1298	600	64	10.0	1050.0000	15
+5	1752	750	128	10.0	1150.0000	14
+6	1298	450	64	10.0	950.0000	12
+
+Printer
+code	model	color	type	price
+1	1276	n	Laser	400.0000
+2	1433	y	Jet	270.0000
+3	1434	y	Jet	290.0000
+4	1401	n	Matrix	150.0000
+5	1408	n	Matrix	270.0000
+6	1288	n	Laser	400.0000
+
+"Корабли"
+Classes  (class, type, country, numGuns, bore, displacement)
+Ships    (name, class, launched)
+Battles  (name, date)
+Outcomes (ship, battle, result)
+Корабль давший название классу называется головным.
+
+Classes
+class	type	country	numGuns	bore	displacement
+Bismarck	bb	Germany	8	15.0	42000
+Iowa	bb	USA	9	16.0	46000
+Kongo	bc	Japan	8	14.0	32000
+North Carolina	bb	USA	12	16.0	37000
+Renown	bc	Gt.Britain	6	15.0	32000
+Revenge	bb	Gt.Britain	8	15.0	29000
+Tennessee	bb	USA	12	14.0	32000
+Yamato	bb	Japan	9	18.0	65000
+
+Ships
+name	class	launched
+California	Tennessee	1921
+Haruna	Kongo	1916
+Hiei	Kongo	1914
+Iowa	Iowa	1943
+Kirishima	Kongo	1915
+Kongo	Kongo	1913
+Missouri	Iowa	1944
+Musashi	Yamato	1942
+New Jersey	Iowa	1943
+North Carolina	North Carolina	1941
+Ramillies	Revenge	1917
+Renown	Renown	1916
+Repulse	Renown	1916
+Resolution	Renown	1916
+Revenge	Revenge	1916
+Royal Oak	Revenge	1916
+Royal Sovereign	Revenge	1916
+South Dakota	North Carolina	1941
+Tennessee	Tennessee	1920
+Washington	North Carolina	1941
+Wisconsin	Iowa	1944
+Yamato	Yamato	1941
+
+Battles
+name	date
+#Cuba62a	1962-10-20 00:00:00.000
+#Cuba62b	1962-10-25 00:00:00.000
+Guadalcanal	1942-11-15 00:00:00.000
+North Atlantic	1941-05-25 00:00:00.000
+North Cape	1943-12-26 00:00:00.000
+Surigao Strait	1944-10-25 00:00:00.000
+
+Outcomes
+ship	battle	result
+Bismarck	North Atlantic	sunk
+California	Guadalcanal	damaged
+CAlifornia	Surigao Strait	ok
+Duke of York	North Cape	ok
+Fuso	Surigao Strait	sunk
+Hood	North Atlantic	sunk
+King George V	North Atlantic	ok
+Kirishima	Guadalcanal	sunk
+Prince of Wales	North Atlantic	damaged
+Rodney	North Atlantic	OK
+Schamhorst	North Cape	sunk
+South Dakota	Guadalcanal	damaged
+Tennessee	Surigao Strait	ok
+Washington	Guadalcanal	ok
+West Virginia	Surigao Strait	ok
+Yamashiro	Surigao Strait	sunk
+
+"Фирма вторсырья"
+Income_o(point, date, inc) -- где поинт и дата - ключи
+Outcome_o(point, date, out)
+-- Другая схема если прием произыодится чаще чем один раз в день 
+Income(code, point, date, inc)
+Outcome(code, point, date, out)
+
+Income_o
+
+point	date	inc
+1	2001-03-22 00:00:00.000	15000.0000
+1	2001-03-23 00:00:00.000	15000.0000
+1	2001-03-24 00:00:00.000	3400.0000
+1	2001-04-13 00:00:00.000	5000.0000
+1	2001-05-11 00:00:00.000	4500.0000
+2	2001-03-22 00:00:00.000	10000.0000
+2	2001-03-24 00:00:00.000	1500.0000
+3	2001-09-13 00:00:00.000	11500.0000
+3	2001-10-02 00:00:00.000	18000.0000
+
+Outcome_o
+point	date	out
+1	2001-03-14 00:00:00.000	15348.0000
+1	2001-03-24 00:00:00.000	3663.0000
+1	2001-03-26 00:00:00.000	1221.0000
+1	2001-03-28 00:00:00.000	2075.0000
+1	2001-03-29 00:00:00.000	2004.0000
+1	2001-04-11 00:00:00.000	3195.0400
+1	2001-04-13 00:00:00.000	4490.0000
+1	2001-04-27 00:00:00.000	3110.0000
+1	2001-05-11 00:00:00.000	2530.0000
+2	2001-03-22 00:00:00.000	1440.0000
+2	2001-03-29 00:00:00.000	7848.0000
+2	2001-04-02 00:00:00.000	2040.0000
+3	2001-09-13 00:00:00.000	1500.0000
+3	2001-09-14 00:00:00.000	2300.0000
+3	2002-09-16 00:00:00.000	2150.0000
+
+Income
+code	point	date	inc
+1	1	2001-03-22 00:00:00.000	15000.0000
+2	1	2001-03-23 00:00:00.000	15000.0000
+3	1	2001-03-24 00:00:00.000	3600.0000
+4	2	2001-03-22 00:00:00.000	10000.0000
+5	2	2001-03-24 00:00:00.000	1500.0000
+6	1	2001-04-13 00:00:00.000	5000.0000
+7	1	2001-05-11 00:00:00.000	4500.0000
+8	1	2001-03-22 00:00:00.000	15000.0000
+9	2	2001-03-24 00:00:00.000	1500.0000
+10	1	2001-04-13 00:00:00.000	5000.0000
+11	1	2001-03-24 00:00:00.000	3400.0000
+12	3	2001-09-13 00:00:00.000	1350.0000
+13	3	2001-09-13 00:00:00.000	1750.0000
+
+Outcome
+code	point	date	out
+1	1	2001-03-14 00:00:00.000	15348.0000
+2	1	2001-03-24 00:00:00.000	3663.0000
+3	1	2001-03-26 00:00:00.000	1221.0000
+4	1	2001-03-28 00:00:00.000	2075.0000
+5	1	2001-03-29 00:00:00.000	2004.0000
+6	1	2001-04-11 00:00:00.000	3195.0400
+7	1	2001-04-13 00:00:00.000	4490.0000
+8	1	2001-04-27 00:00:00.000	3110.0000
+9	1	2001-05-11 00:00:00.000	2530.0000
+10	2	2001-03-22 00:00:00.000	1440.0000
+11	2	2001-03-29 00:00:00.000	7848.0000
+12	2	2001-04-02 00:00:00.000	2040.0000
+13	1	2001-03-24 00:00:00.000	3500.0000
+14	2	2001-03-22 00:00:00.000	1440.0000
+15	1	2001-03-29 00:00:00.000	2006.0000
+16	3	2001-09-13 00:00:00.000	1200.0000
+17	3	2001-09-13 00:00:00.000	1500.0000
+18	3	2001-09-14 00:00:00.000	1150.0000
+
+1. Найдите номер модели, скорость и размер жесткого диска для всех ПК стоимостью менее 500 дол. Вывести: model, speed, hd:
+
+select model, speed, hd from pc where price < 500;
+
+
+2. Найдите производителей принтрев maker:
+
+select distinct maker from Product where type = 'Printer';
+
+
+3. Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000:
+
+select model, ram, screen from Laptop where price > 1000;
+
+
+4. Найдите все записи таблицы Printer для цветовых принтеров:
+
+select * from Printer where color = 'y';
+
+
+5. Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24х CD и цену менее 600 дол:
+
+select distinct model, speed, hd from PC where (cd = '12x' or cd = '24x') and price < 600;
+
+
+6. Для каждого производителя, выпускающего Пк блокноты с объемом жесткого диска не менее 10 Г, найти скорости таких Пк-блокнотов. Вывод производитель, скорость:
+
+select distinct Product.maker, Laptop.speed
+from Product left outer join Laptop
+on Product.model = Laptop.model
+where hd >= 10
+
+
+7. Найдите номера моделей и цены всех имеющихся в продаже продуктов(любого типа) производителя B: :ОБЪЕДИНЕНИЕ:union:inner join:внутреннее:
+
+select distinct Product.model, PC.price
+from Product inner join PC
+on Product.model = PC.model
+where maker = 'B'
+UNION
+select distinct Product.model, Laptop.price
+from Product inner join Laptop
+on Product.model = Laptop.model
+where maker = 'B'
+UNION
+select distinct Product.model, Printer.price
+from Product inner join Printer
+on Product.model = Printer.model
+where maker = 'B'
+
+
+8. Найдите производителя, выпускающего ПК, но не ПК-блокноты :intersect:except:пересечение:разность:подзапрос во вхождении:
+
+select distinct maker from Product where type = 'PC'
+except
+select distinct maker from Product where type = 'Laptop'
+
+select distinct maker from Product where type = 'PC'
+and maker not in (select distinct maker from Product where type = 'Laptop')
+
+
+9. Найдите производителей ПК с процессором не менее 450. Вывести Maker:
+
+select distinct Product.maker
+from Product inner join PC
+on Product.model = PC.model
+where PC.speed >= 450
+
+
+10. Найдите модели принтеров, имеющих самую высокую цуену. Вывести model, price :подзапрос в условии:
+
+select distinct model, price from Printer
+where price = (select max(price) from Printer)
+
+
+11. Найдите среднюю скорость ПК.
+
+select avg(speed) from PC
+
+
+12. Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол. :подзапрос в таблице:
+
+select avg(speed) from (select speed from Laptop where price > 1000) as lp
+
+
+13. Найдите среднюю скорость ПК, выпущенную производителем А.
+
+select avg(speed)
+from (
+select PC.speed as speed
+from Product inner join PC
+on Product.model = PC.model
+where Product.maker = 'A'
+) as newPC
+
+
+14. Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
+
+select distinct Classes.class, Ships.name, Classes.country
+from Ships left outer join Classes
+on Classes.class = Ships.class
+where Classes.numGuns >= 10
+
+
+15. Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести HD. :having:group by:
+
+select hd as newhd from PC
+group by hd
+having count(hd) >= 2
+
+
+16. Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, те (i,j), но не (j,i). Порядок вывода:
+модель с большим номером, модель с меньшим номером, скорость и RAM.
+
+select distinct ps1.model, ps2.model, ps1.speed, ps1.ram
+from PC as ps1 inner join PC as ps2
+on ps1.speed = ps2.speed and ps1.ram = ps2.ram
+where ps1.model > ps2.model
+
+
+17. Найдите модели пк-блокнотов, скорость которых меньше скорости каждого из пк. Вывести: type, model, speed.
+
+select distinct Product.type, Laptop.model, Laptop.speed
+from Product left outer join Laptop
+on Product.model = Laptop.model
+where speed < (select min(speed) from PC)
+
+
+18. Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price.
+
+select distinct Product.maker, Printer.price
+from Product inner join Printer
+on Product.model = Printer.model
+where Printer.color = 'y' and Printer.price = (
+select min(Printer.price) from Printer
+where Printer.color = 'y'
+)
+
+
+19. Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им пк-блокнотов. Вывести: maker, средний размер экрана. :group by:
+
+select distinct Product.maker as maker, avg(Laptop.screen) as screen
+from Product inner join Laptop
+on Product.model = Laptop.model
+group by maker
+
+
+20. Найдите производителей, выпускающих по меньшей мере три различных модели пк. Вывести: maker, число моделей пк. :having:group by:
+
+select distinct Product.maker as maker, count(Product.model) as count
+from Product
+group by maker, Product.type
+having Product.type = 'PC' and count(Product.model) >= 3
+
+
+21. Найдите максимальную цену ПК, выпускаемых каждым производиетелем, у которого есть модели в таблице PC. Вывести: maker, маесимальная цена.
+
+select distinct Product.maker as maker, max(PC.price) as price
+from Product inner join PC
+on Product.model = PC.model
+group by maker
+
+
+22. Для каждого значения скорости пк, превышающего 600 МГЦ, определите среднюю цену пк с такой же скоростью. Вывести: speed, средняя цена. :group by:having:
+
+select distinct speed, avg(price) as price
+from PC
+group by speed
+having speed > 600
+
+
+23. Найдите производителей, которые производили бы как ПК со скоростью не менее 750 мгц, так и ПК-блокноты со скоростью не менее 750 мгц. Вывести: Maker. :intersect:
+
+select distinct maker from Product
+where model in
+(
+select distinct model from PC where speed >= 750
+union
+select distinct model from Laptop where speed >=750
+) -- ошибочен так как может попасть производитель производивший чтонибудь одно
+
+select distinct Product.maker
+from Product inner join PC
+on Product.model = PC.model
+where PC.speed >= 750
+intersect
+select distinct Product.maker
+from Product inner join Laptop
+on Product.model = Laptop.model
+where Laptop.speed >= 750
+
+
+24. Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции. :with:представление:cte:
+
+with allmodels as (
+select distinct model, max(price) as price from PC group by model
+union all
+select distinct model, max(price) as price from Laptop group by model
+union all
+select distinct model, max(price) as price from Printer group by model
+)
+select model from allmodels where price = (
+select distinct max(price) from allmodels
+)
+
+
+25. (не решил) Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести Maker. 
+
+select distinct Product.maker 
+from Product inner join PC
+on Product.model = PC.model
+where ram = (select min(PC.ram) from PC)
+intersect
+
+select distinct Product.maker
+from Product inner join (
+select distinct model, min(PC.ram) as minram, max(speed) as maxspeed 
+from PC
+group by model) 
+as minmaxmodel
+on Product.model = minmaxmodel.model -- неправильное определение максимальной скорости и минимальной памяти
+
+
+select distinct Product.maker 
+from Product inner join PC
+on Product.model = PC.model
+where ram = (select min(PC.ram) from PC)
+intersect
+select distinct Product.maker 
+from Product inner join PC
+on Product.model = PC.model
+where speed = (
+select max(speed)
+from (
+select speed from PC where ram = (
+select min(ram) from PC)) as s) -- тоже неверно
+
+
+SELECT DISTINCT maker
+FROM Product 
+WHERE type = 'printer' AND 
+      maker IN(SELECT maker 
+               FROM Product 
+               WHERE model IN(SELECT model 
+                              FROM PC
+                              WHERE speed = (SELECT MAX(speed)
+                                             FROM (SELECT speed 
+                                                   FROM PC 
+                                                   WHERE ram=(SELECT MIN(ram)
+                                                              FROM PC
+                                                              )
+                                                   ) AS z4
+                                             )
+                              )
+               ); -- тоже неверное но интересное
+
+
+26.(не решил) Найдите среднюю цену пк и пкблокнотов, выпущенных производителем 'А'. Вывести: одна общая средняя цена.
+
+with MakerPrice as
+(
+select price 
+from Product inner join PC
+on PC.model = Product.model
+where maker = 'A'
+UNION
+select price
+from Product inner join Laptop
+on Laptop.model = Product.model
+where maker = 'A'
+)
+select avg(price) as AVG_price from MakerPrice -- неправильно
+
+
+27. Найдите средний размер диска ПК каждого их тех производиетелей, которые выпускают и принтеры.
+Вывести maker, средний размер HD.
+
+select distinct Product.maker, avg(PC.hd) 
+from Product inner join PC
+on Product.model = PC.model
+group by Product.maker 
+having Product.maker in (
+select distinct maker from Product where type = 'PC' and maker in (
+select distinct maker from Product where type = 'Printer'))
+
+
+28. Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+
+select count(mk.maker) as cnt 
+from (
+select distinct maker, count(model) as count from Product
+group by maker
+having count(model) = 1) as mk
+
+
+29. В предположени, что приход и расход денег на каждом пункте приема фиксируется не чаще одного раза в день (т.е. первичный ключ(пункт, дата)), написать запрос с выходными данными (пункт, дата, приход, расход). Использовать таблицы Income_o и Outcome_o. :join:более двух таблиц:
+
+with Dates as (
+select distinct point, date
+from Income_o
+union
+select distinct point, date
+from Outcome_o
+)
+select distinct Dates.point as point, Dates.date as date, 
+Income_o.inc as inc, Outcome_o.out as out
+from Dates
+left outer join Income_o
+on Dates.point = Income_o.point
+and Dates.date = Income_o.date
+left outer join Outcome_o
+on Dates.point = Outcome_o.point
+and Dates.date = Outcome_o.date
+
+
+30. В предположении, что приход и расход денег на каждом пункте приема фиксируется произвольное число раз (первичным ключом в таблицах является столбец code), требуется получить таблицу, в которой каждому пункту за каждую дату выполнения операций будет соответствовать одна строка.
+Вывод: point, date, суммарный расход пункта за день (out), суммарный прихода пункта за день (inc).
+Отсутсвующие значения считать неопределенными (NULL).
+
+with AllPoints as (
+select code, point, date
+from Income
+union
+select code, point, date
+from Outcome
+)
+select distinct AllPoints.point as point, AllPoints.date as date, 
+sum(Outcome.out) as out, sum(Income.inc) as inc
+from AllPoints
+left outer join Income
+on AllPoints.code = Income.code
+and AllPoints.date = Income.date
+left outer join Outcome
+on AllPoints.code = Outcome.code
+and AllPoints.date = Outcome.date
+group by AllPoints.point, AllPoints.date -- результат совпадает, но где то ошибка.
+
+
+31. Для классов кораблей, калибр орудий которых не менее 16 дюймов, укажите класс и страну.
+
+
+
